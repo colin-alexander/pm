@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Police Mutual</title>
+
+
+    <link href="css/style.min.css" rel="stylesheet" />
+    <link href="css/product-preview.min.css" rel="stylesheet" />
+
+
+</head>
+<body>
+    <header>
+        <div>
+            <img class="logo" src="img/police-mutual-logo-01.svg" alt="Police Mutual" />
+        </div>
+    </header>
+
+    <div class="product-list">
+        <div>
+            <div class="product-item">
+                <img class="product-icon" src="img/insurance.svg" />
+                <div class="product-description">
+                    <h5>Car Insurance</h5>
+                    <p>Cover that goes further for the Police family</p>
+                    <div class="product-actions">
+                        <span class="preview-trigger" data-product="1"></span>
+                        <a href="" class="btn btn-primary">Find out more ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="product-item">
+                <img class="product-icon" src="img/insurance.svg" />
+                <div class="product-description">
+                    <h5>Breakdown Cover</h5>
+                    <p>100% reassurance for the road ahead, from £56 per year</p>
+                    <div class="product-actions">
+                        <span class="preview-trigger" data-product="2"></span>
+                        <a href="" class="btn btn-primary">Find out more ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="product-item">
+                <img class="product-icon" src="img/insurance.svg" />
+                <div class="product-description">
+                    <h5>Home Insurance</h5>
+                    <p>Affordable, straightforward protection for the things you value most</p>
+                    <div class="product-actions">
+                        <span class="preview-trigger" data-product="3"></span>
+                        <a href="" class="btn btn-primary">Find out more ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+    const products = {
+        "1": {
+            id: "1",
+            title: "Car Insurance",
+            subtitle: "Cover that goes further for the Police family",
+            body: "<ul><li>Unlike most other insurers, we let you spread the annual cost into monthly payments at no extra cost, letting you budget over the long term</li><li>Things change. That’s why we won’t penalise you with administration charges if you need to fine-tune your policy mid-term</li><li>We’ll pay cancellation fees up to the value of £125 from your existing insurer, so you can switch at any time</li><li>We can cover you whilst driving on official Police business and whilst carrying your Police kit if you\'re a Serving Officer</li><li>2 Years New Car Replacement</li><li>Insurance that’s independently rated as Five-Star by Moneyfacts</li></ul>",
+            img: "https://www.policemutual.co.uk/media/kg2m4unn/car-desktop-0220.jpg",
+            url: "https://www.policemutual.co.uk/products/insurance/car-insurance/"
+        },
+        "2": {
+            id: "2",
+            title: "Breakdown Cover",
+            subtitle: "100% reassurance for the road ahead, from £56 per year ",
+            body: "<ul>\n<li>If you break down in the UK, you’ll get back on the road fast with over 425 recovery specialists in the UK on hand, 365 days a year*</li>\n<li>Going abroad? Be a worry-free wanderer with European cover available</li>\n<li>Cover for your car, regardless of who\'s driving it, if it breaks down</li>\n</ul>",
+            img: "https://www.policemutual.co.uk/media/1xhjqubi/breakdown-desktop.jpg",
+            url: "https://www.policemutual.co.uk/products/insurance/breakdown-cover/"
+        },
+        "3": {
+            id: "3",
+            title: "Home Insurance",
+            subtitle: "Affordable, straightforward protection for the things you value most ",
+            body: "<ul>\n<li>Spread the annual cost with interest-free monthly payments</li>\n<li>No maths required – up to £75,000 contents cover and £1,000,000 buildings cover comes as standard</li>\n<li>We’ll pay cancellation fees up to the value of £125 from your existing insurer, so you can switch at any time</li>\n<li>Insurance that’s independently rated as Five-Star by Moneyfacts</li>\n</ul>",
+            img: "https://www.policemutual.co.uk/media/ffshlkxq/home-insurance-narpo.png",
+            url: "https://www.policemutual.co.uk/products/insurance/home-insurance/"
+        }
+    };
+    </script>
+    <script src="js/preview-min.js"></script>
+    <script>
+    let preview;
+    function setupPreview(e) {
+        preview = new Preview();
+        let targets = document.querySelectorAll('.preview-trigger');
+        for (let i = 0; i < targets.length; i++) {
+            let btn = document.createElement('button');
+            btn.classList.add('btn', 'btn-secondary', 'btn-preview');
+            btn.dataset.product = targets[i].dataset.product;
+            btn.textContent = 'Preview';
+            btn.setAttribute('type', 'buton');
+            targets[i].append(btn);
+            btn.addEventListener('click', displayPreview);
+        }
+    }
+    function displayPreview(e) {
+        e.preventDefault();
+        let link = e.target,
+            id = link.dataset.product,
+            info = products[id],
+            opts = {
+                heading: info.title,
+                subheading: info.subtitle,
+                innerHtml: info.body,
+                image: info.img,
+                url: info.url
+            };
+        preview.updateContent(opts);
+        preview.open(link);
+    }
+    window.addEventListener('load', setupPreview);
+    </script>
+
+</body>
+</html>
